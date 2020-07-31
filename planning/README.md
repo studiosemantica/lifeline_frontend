@@ -105,7 +105,7 @@ In the post-MVP application, users would be able to register profiles as unverif
 | Deployment(Domain Mapping, Netlify, Heroku, Troubleshooting, testing) | H | 5hr | 6.5hr |0 hr|
 | Research (Planning, Referencing libraries, codes, and writing pseudocode) | H | 8hr | 9hr |0 hr|
 | Backend Connection & jQuery | H | 6hr | 7 hr | 0 hr|
-| Total | H | 39.5 hrs| 3 hrs | 40 hr|
+| Total | H | 39.5 hrs| 3 hrs | 0 hr|
 
 #### PostMVP
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
