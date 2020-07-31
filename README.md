@@ -42,7 +42,7 @@ If users are witnessing an emergency, suspected overdose, a mental health crisis
 
 Users can provide optional contact or location information as well as a description depending on the situation and its urgency. 
 
-After submitting requests, they will display on the app in sequential order and will have the functionality of being updated and deleted once posted. 
+After submitting requests,  requests will display as alerts on the app in sequential order and will have the functionality of being updated and deleted once posted. 
 
 Users who are responding to requests can view the alerts posted and choose to respond and act in assistance based on the information provided.
 
