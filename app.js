@@ -29,11 +29,11 @@ const $ul = $("ul");
   const data = await response.json();
 
   //POPULATE SELECTOR WITH RETRIEVED DATA
-  data.forEach((Case) => {
-    const $option = $("<option>").attr("value", Case._id).text(Case.name);
+  data.forEach((item) => {
+    const $option = $("<option>").attr("value", item._id).text(item.type);
     $pizzaSelect.append($option);
 
-    const $option2 = $("<option>").attr("value", Case._id).text(Case.name);
+    const $option2 = $("<option>").attr("value", item._id).text(item.type);
     $pizzaEditSelect.append($option2);
   });
 };
@@ -49,7 +49,7 @@ const getRats = async () => {
   data.forEach((request) => {
     //create the li
     const $li = $("<li>").text(
-      `${rat.name} likes to eat ${request.case.name} pizza`
+      `${request.name} needs assistance with ${request.case.type}.`
     );
     //add a delete button for each rat
     $li.append($("<button>").text("delete").attr("id", request._id).on("click", deleteRat))

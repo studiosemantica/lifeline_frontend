@@ -1,17 +1,28 @@
 h1 {
   text-align: center;
-  color: red;
+  color: black;
+}
+
+h3 {
+  text-align: center;
+  color: black;
 }
 
 .wiz {
-  width: 80%;
-  background-color: darkred;
+  width: 500px;
+  background-color:black;
   color: white;
-  margin: 20px auto;
-  padding: 20px;
-  text-align: center;
+  margin: 0px auto;
+
 }
 
 .form {
     text-align: center;
+}
+
+li {
+  list-style-type:none;
+  margin: 0px 0px 0px -30px;
+  padding:20px 0px 20px 20px;
+
 }
