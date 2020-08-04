@@ -4,7 +4,8 @@
 
 //SET URL SO IT USES DEPLOYED API URL IF IT EXISTS, LOCALHOST IF IT DOESN'T
 const deployedURL = "https://project2backend-mk.herokuapp.com";
-const URL = deployedURL ? deployedURL : "http://localhost:3000";
+// const deployedURL = "";
+const URL = deployedURL ? deployedURL : "http://localhost:3003";
 
 ///////////////////////
 //GLOBAL VARIABLES
@@ -73,7 +74,7 @@ const createRat = async (event) => {
   //Create to New Rat from Form Data
   const newRat = {
     name: $nameInput.val(),
-    pizza: $pizzaSelect.val(),
+    case: $pizzaSelect.val(),
   };
 
   //Send request to api to create rat
@@ -88,6 +89,7 @@ const createRat = async (event) => {
 
   //update the DOM
   $ul.empty()
+  $nameInput.val('');
   getRats()
 };
 
@@ -110,7 +112,7 @@ const updateRat = async (event) => {
   //Create Updated Rat Object
   const updatedRat = {
     name: $nameEditInput.val(),
-    pizza: $pizzaEditSelect.val()
+    case: $pizzaEditSelect.val()
   }
   //make our put request
   const response = await fetch(`${URL}/request/${event.target.id}`, {
@@ -123,6 +125,7 @@ const updateRat = async (event) => {
   
   //update the dom
   $ul.empty();
+  $nameEditInput.val('');
   getRats();
 }
 
