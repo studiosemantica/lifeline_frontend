@@ -49,9 +49,8 @@ const getRats = async () => {
   //populate DOM with rats
   data.forEach((request) => {
     //create the li
-    
     const $li = $("<p>").addClass("card-text mb-3").text(`${request.name} needs assistance with ${request.case.type}.`).append($('<hr>'));
-    // const $li2 = $("<li>").text(`${request.name} needs assistance with ${request.case.type}.`);
+    // const $li2 = $("<p>").addClass("card-text mb-3").text(`${request.name} needs assistance with ${request.case.type}.`).append($('<hr>'));
     //add a delete button for each rat
     $li.append($("<button>").text("delete").attr("id", request._id).on("click", deleteRat))
 
@@ -74,7 +73,22 @@ const getRats = async () => {
 
   // ask if you can make case switch statements here
   // add badge showing what case it is
-  const $badge = $('<a>').addClass("badge badge-danger").text(`${request.case.type}`)
+  // const $badge = $('<a>').addClass("badge badge-danger").text(`${request.case.type}`)
+
+  let $badge = $('')
+  if ( request.case.type === "Accident") {
+    $badge = $('<a>').addClass("badge badge-secondary").text(`${request.case.type}`)
+  } else if ( request.case.type === "Mental Health Crisis"){
+    $badge = $('<a>').addClass("badge badge-warning").text(`${request.case.type}`)
+  } else if ( request.case.type === "Potential Overdose"){
+    $badge = $('<a>').addClass("badge badge-danger").text(`${request.case.type}`)
+  } else if ( request.case.type === "Seeking Safety"){
+    $badge = $('<a>').addClass("badge badge-success").text(`${request.case.type}`)
+  } else if ( request.case.type === "Seeking Resources"){
+    $badge = $('<a>').addClass("badge badge-primary").text(`${request.case.type}`)
+  }
+
+  
   // define spacer
   const $spacer = $('<hr>')
   // define cardTitle
@@ -84,6 +98,9 @@ const getRats = async () => {
   //create each card 
   $('.row').append($($gridDiv).append($($cardDiv).append($($cardBodyDiv).append($badge).append($spacer).append($cardTitle).append($li))))
 
+  // $('.wiz').append($($li2))
+  console.log('hellow world');
+  console.log(request.case.type);
 
   });
 };
