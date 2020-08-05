@@ -19,7 +19,7 @@ const $editButton = $("#editbutton");
 const $emailInput = $("#form29")
 const $phoneInput = $("#form30")
 const $locationInput = $("#form31")
-const $descriptionInput =$("form8")
+const $descriptionInput = $("#form8")
 const $ul = $("ul");
 
 
@@ -83,15 +83,18 @@ const getRequests = async () => {
   // define cardLocationTitle
   const $cardLocation = $('<h4>').addClass("card-title").append($('<strong>').text(`${request.location}`).append($('<hr>')))
 
-  const $contactDiv = $('<div>').addClass("card text-left mb-4")
-  const $contactHeader = $('<div>').addClass("card-header text-left").attr("style","font-size: 20px;").text("Contact")
+  const $contactDiv = $('<div>').attr('class','card text-left mb-4')
+  const $contactHeader = $('<div>').addClass("card-header").attr("style","font-size: 20px;").text("Contact")
   const $contactBody = $('<div>').addClass("card-body")
   const $contactName = $('<h5>').addClass("card-title").attr("id", "name").attr("style","font-size: 16px;").text(`${request.name}`)
-  const $contactPhone = $('<p>').addClass("card-text mb-1").attr("style","font-size: 13px;").text(`${request.phone}`)
-  const $contactEmail = $('<p>').addClass("card-text").attr("style","font-size: 13px;").text(`${request.email}`).append($('<hr>'))
+  const $contactPhone = $('<p>').addClass("card-text").addClass("mb-1").attr("style","font-size: 13px;").text(`${request.phone}`)
+  const $contactEmail = $('<p>').addClass("card-text").attr("style","font-size: 13px;").text(`${request.email}`)
   const $break = $('<br>')
 
-  const $contact = $contactDiv.append($contactHeader).append($contactBody).append($contactName).append($contactPhone).append($contactEmail).append($break)
+
+  const $contactDetails = $contactBody.append($contactName).append($contactPhone).append($contactEmail)
+  
+  const $contact = $contactDiv.append($contactHeader).append($contactDetails)
       
      //DESCRIPTION GOES HERE
       const $p = $("<p>").addClass("card-text mb-3").text(`${request.description}`).append($('<hr>'));
@@ -131,8 +134,9 @@ const createRequest = async (event) => {
     email: $emailInput.val(),
     location: $locationInput.val(),
     description: $descriptionInput.val(),
+    
   };
-
+   console.log(newRequest);
   //Send request to api to create request
   const response = await fetch(`${URL}/request`, {
     method: "post",
@@ -142,6 +146,7 @@ const createRequest = async (event) => {
     body: JSON.stringify(newRequest),
   })
   const data = response.json();
+
 
   //update the DOM
   $('.row').empty();
