@@ -11,10 +11,10 @@ const URL = deployedURL ? deployedURL : "http://localhost:3003";
 //GLOBAL VARIABLES
 //////////////////////
 const $nameInput = $("#createinput");
-const $pizzaSelect = $("#createselect");
+const $caseSelect = $("#createselect");
 const $button = $("#createbutton");
 const $nameEditInput = $("#editinput");
-const $pizzaEditSelect = $("#editselect");
+const $caseEditSelect = $("#editselect");
 const $editButton = $("#editbutton");
 const $ul = $("ul");
 
@@ -32,10 +32,10 @@ const $ul = $("ul");
   //POPULATE SELECTOR WITH RETRIEVED DATA
   data.forEach((item) => {
     const $option = $("<option>").attr("value", item._id).text(item.type);
-    $pizzaSelect.append($option);
+    $caseSelect.append($option);
 
     const $option2 = $("<option>").attr("value", item._id).text(item.type);
-    $pizzaEditSelect.append($option2);
+    $caseEditSelect.append($option2);
   });
 };
 
@@ -57,7 +57,7 @@ const getRats = async () => {
     //add an edit button for each rat
     $li.append($("<button>").text("edit").on("click", (event) => {
       $nameEditInput.val(request.name)
-      $pizzaEditSelect.val(request.case._id)
+      $caseEditSelect.val(request.case._id)
       $editButton.attr("id", request._id)
     }))
 
@@ -71,10 +71,7 @@ const getRats = async () => {
   const $cardBodyDiv = $('<div>').addClass("card-body")
 
 
-  // ask if you can make case switch statements here
-  // add badge showing what case it is
-  // const $badge = $('<a>').addClass("badge badge-danger").text(`${request.case.type}`)
-
+  //CODE Block to assign color tag to each Badge
   let $badge = $('')
   if ( request.case.type === "Accident") {
     $badge = $('<a>').addClass("badge badge-secondary").text(`${request.case.type}`)
@@ -113,7 +110,7 @@ const createRequest = async (event) => {
   //Create to New Rat from Form Data
   const newRequest = {
     name: $nameInput.val(),
-    case: $pizzaSelect.val(),
+    case: $caseSelect.val(),
   };
 
   //Send request to api to create rat
@@ -151,7 +148,7 @@ const updateRequest = async (event) => {
   //Create Updated Rat Object
   const updatedRequest = {
     name: $nameEditInput.val(),
-    case: $pizzaEditSelect.val()
+    case: $caseEditSelect.val()
   }
   //make our put request
   const response = await fetch(`${URL}/request/${event.target.id}`, {
