@@ -20,7 +20,7 @@ This schedule will be used to keep track of progress throughout the week and ali
 |Day 1| Wireframes / Priority Matrix / backend and frontend | Complete
 |Day 2| Link to Custom Domain / Early test of deployment and Collection of Typeface Google Fonts and Website Assets + Data Modeling | Complete
 |Day 3| Working RestAPI | Complete
-|Day 4| Core Application Structure (HTML, CSS, etc.)| Incomplete
+|Day 4| Core Application Structure (HTML, CSS, etc.)| Complete
 |Day 5| MVP | Incomplete
 |Day 6| Present | Incomplete
 
@@ -97,25 +97,25 @@ In the post-MVP application, users would be able to register profiles as unverif
 | Desktop Menu | M | 1 hr | 1 hr | 0 hr|
 | Hero Text Intro Section / Site Description | L | 45 min | 1 hr | 0 hr|
 | Request Assistance Button | H | 1 hr | 1.5hr | .25 hr|
-| Drop Down User Post Form | H | 3hr | 3hr | .50 hr|
+| Drop Down User Post Form | H | 3hr | 3hr | 3 hr|
 | Alert Cards Section | M | 1hr | 1.5hr |.50 hr|
-| Individual Alert Cards with Update and Delete Functionality | H | 3hr| 3.5hr | 1 hr|
+| Individual Alert Cards with Update and Delete Functionality | H | 3hr| 3.5hr | 1.5 hr|
 | Hamburger | L | 1 hr  | 1.5 hr | 0 hr|
 | Responsive | M | 3 hr | 3.5hr | .25 hr|
-| Deployment(Domain Mapping, Netlify, Heroku, Troubleshooting, testing) | H | 5hr | 6.5hr | 1.25 hr|
-| Research (Planning, Referencing libraries, codes, and writing pseudocode) | H | 8hr | 9hr |5hr|
-| Backend Connection & jQuery | H | 6hr | 7 hr | 2 hr|
-| Total | H | 39.5 hrs| 3 hrs | 18.50 hr|
+| Deployment(Domain Mapping, Netlify, Heroku, Troubleshooting, testing) | H | 5hr | 6.5hr | 2 hr|
+| Research (Planning, Referencing libraries, codes, and writing pseudocode) | H | 8hr | 9hr | 6hr|
+| Backend Connection & jQuery | H | 6hr | 7 hr | 3 hr|
+| Total | H | 39.5 hrs| 3 hrs | 17.75 hr|
 
 #### PostMVP
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
-| Color-Coded Alerts | H | 3hr | 3.5hr | 0 hr |
+| Color-Coded Alerts | H | 3hr | 3.5hr | .75 hr |
 | Volunteer Profile Design | M | 16 hr | 1.5hr | 0 hr |
 | Volunteers Page | M | 10 hr | 1.5hr | 0 hr |
 | Forum Design | M | 40 hr | 45 hr | 0 hr |
 | Footer | L | 1hr | 1.5hr | 0 hr |
-| Total | H | 70 hrs| 76 hrs | 6.25hrs |
+| Total | H | 70 hrs| 76 hrs | .75 hr |
 
 ## Additional Libraries
 The following resources/Libraries were referenced in order to create the listed elements.
