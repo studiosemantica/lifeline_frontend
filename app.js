@@ -49,9 +49,9 @@ const getRats = async () => {
   //populate DOM with rats
   data.forEach((request) => {
     //create the li
-    const $li = $("<li>").text(
-      `${request.name} needs assistance with ${request.case.type}.`
-    );
+    
+    const $li = $("<p>").addClass("card-text mb-3").text(`${request.name} needs assistance with ${request.case.type}.`).append($('<hr>'));
+    // const $li2 = $("<li>").text(`${request.name} needs assistance with ${request.case.type}.`);
     //add a delete button for each rat
     $li.append($("<button>").text("delete").attr("id", request._id).on("click", deleteRat))
 
@@ -62,17 +62,39 @@ const getRats = async () => {
       $editButton.attr("id", request._id)
     }))
 
+  
+
+  // make bootstrap div for grid column of each card
+  const $gridDiv = $('<div>').addClass("col-md-4 mb-4")
+  // add card div
+  const $cardDiv = $('<div>').addClass("card")
+  // add card content div
+  const $cardBodyDiv = $('<div>').addClass("card-body")
 
 
+  // ask if you can make case switch statements here
+  // add badge showing what case it is
+  const $badge = $('<a>').addClass("badge badge-danger").text(`${request.case.type}`)
+  // define spacer
+  const $spacer = $('<hr>')
+  // define cardTitle
+  const $cardTitle = $('<h4>').addClass("card-title").append($('<strong>').text(`${request.location}`).append($('<hr>')))
 
-    $ul.append($li);
+
+  //create each card 
+  $('.row').append($($gridDiv).append($($cardDiv).append($($cardBodyDiv).append($badge).append($spacer).append($cardTitle).append($li))))
+
+
   });
 };
 
-//CREATE A RAT
-const createRat = async (event) => {
+
+
+
+//CREATE A REQUEST
+const createRequest = async (event) => {
   //Create to New Rat from Form Data
-  const newRat = {
+  const newRequest = {
     name: $nameInput.val(),
     case: $pizzaSelect.val(),
   };
@@ -83,12 +105,12 @@ const createRat = async (event) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(newRat),
+    body: JSON.stringify(newRequest),
   })
   const data = response.json();
 
   //update the DOM
-  $ul.empty()
+  $('.row').empty();
   $nameInput.val('');
   getRats()
 };
@@ -101,7 +123,7 @@ const deleteRat = async (event) => {
   })
 
   //update the dom
-  $ul.empty()
+  $('.row').empty();
   getRats()
 }
 
@@ -124,8 +146,9 @@ const updateRat = async (event) => {
   })
   
   //update the dom
-  $ul.empty();
+
   $nameEditInput.val('');
+  $('.row').empty();
   getRats();
 }
 
