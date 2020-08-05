@@ -10,7 +10,7 @@ const URL = deployedURL ? deployedURL : "http://localhost:3003";
 ///////////////////////
 //GLOBAL VARIABLES
 //////////////////////
-const $nameInput = $("#createinput");
+const $nameInput = $("#form34");
 const $caseSelect = $("#createselect");
 const $button = $("#createbutton");
 const $nameEditInput = $("#editinput");
@@ -49,13 +49,13 @@ const getRats = async () => {
   //populate DOM with rats
   data.forEach((request) => {
     //create the li
-    const $li = $("<p>").addClass("card-text mb-3").text(`${request.name} needs assistance with ${request.case.type}.`).append($('<hr>'));
+    const $p = $("<p>").addClass("card-text mb-3").text(`${request.name} needs assistance with ${request.case.type}.`).append($('<hr>'));
     // const $li2 = $("<p>").addClass("card-text mb-3").text(`${request.name} needs assistance with ${request.case.type}.`).append($('<hr>'));
     //add a delete button for each rat
-    $li.append($("<button>").text("delete").attr("id", request._id).on("click", deleteRat))
+    $p.append($("<button>").text("delete").attr("id", request._id).on("click", deleteRat))
 
     //add an edit button for each rat
-    $li.append($("<button>").text("edit").on("click", (event) => {
+    $p.append($("<button>").text("edit").on("click", (event) => {
       $nameEditInput.val(request.name)
       $caseEditSelect.val(request.case._id)
       $editButton.attr("id", request._id)
@@ -93,7 +93,7 @@ const getRats = async () => {
 
 
   //create each card 
-  $('.row').append($($gridDiv).append($($cardDiv).append($($cardBodyDiv).append($badge).append($spacer).append($cardTitle).append($li))))
+  $('.row').append($($gridDiv).append($($cardDiv).append($($cardBodyDiv).append($badge).append($spacer).append($cardTitle).append($p))))
 
   // $('.wiz').append($($li2))
   console.log('hellow world');
@@ -111,6 +111,10 @@ const createRequest = async (event) => {
   const newRequest = {
     name: $nameInput.val(),
     case: $caseSelect.val(),
+    phone: $phoneInput.val(),
+    email: $emailInput.val(),
+    location: $locationInput.val(),
+    description: $descriptionInput.val(),
   };
 
   //Send request to api to create rat

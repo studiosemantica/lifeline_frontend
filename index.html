@@ -58,11 +58,28 @@
               of the card's content.Some quick example text to build on the card title and make up the bulk
     
             </p>
-            <p class="font-small font-weight-bold dark-grey-text mb-1"><i class="far fa-clock-o"></i>
-              27/08/2019</p>
-            <p class="font-small grey-text mb-0">Anna Smith</p>
-            <p class="text-right mb-0 font-small font-weight-bold"><a>read more <i class="fas fa-angle-right"></i></a></p>
-          </div>
+            <p class="text-right mb-2 font-small font-weight-bold"><a>read more <i class="fas fa-angle-right"></i></a></p>
+
+            <div class="card text-left mb-4">
+              <div class="card-header" style="font-size: 20px;">
+                Contact
+              </div>
+              <div class="card-body">
+                <h5 class="card-title" id="name" style="font-size: 16px;">Magdalena Krzyzanowski</h5>
+                <p class="card-text mb-1" style="font-size: 13px;">(973) 570-4698</p>
+                <p class="card-text" style="font-size: 13px;">magdaberries@gmail.com</p>
+               
+              </div>
+              <div class="card-footer text-muted">
+                Timestamp goes in here
+              </div>
+            </div>
+
+
+            <!-- <p class="font-small font-weight-bold dark-grey-text mb-1"><i class="far fa-clock-o"></i>
+              27/08/2019</p> -->
+         
+          
           <!--/.Card content-->
 
         </div>
@@ -73,15 +90,14 @@
 
   
       </div>
-      
-      <div class="text-center mt-4 mb-5">
-        <a class="black-text font-weight-bold" href="#!">Browse all articles <i class="fa fa-angle-right"></i></a>
-      </div>
-  
     </section>
     <!--Section: Content-->
   
   
+  </div>
+
+  <div class="text-center mt-4 mb-5">
+    <a class="black-text font-weight-bold" href="#!">Browse all articles <i class="fa fa-angle-right"></i></a>
   </div>
 
 <!--dropdown modal form-->
@@ -89,7 +105,7 @@
 <div class="form">
   <h1>Request Assistance</h1>
   <input type=text name=name id="createinput"/>
-  <select name="wand" id="createselect">
+  <!-- <select name="wand" id="createselect"> -->
   </select>
   <button id="createbutton">Submit</button>
 </div>
@@ -116,31 +132,28 @@
         <div class="md-form mb-5">
           <label data-error="wrong" data-success="right" for="form34">Your name</label>
           <i class="fas fa-user prefix grey-text"></i>
-          <input type="text" id="form34" class="form-control validate" placeholder="Name">
+          <input type="text" name=name id="form34" class="form-control validate" placeholder="Name">
           
         </div>
 
         <div class="md-form mb-5">
+          <label data-error="wrong" data-success="right" for="form29" >E-Mail</label>
           <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="form29" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="form29">Your email</label>
+          <input type="email" id="form29" class="form-control validate" placeholder="ex. steph19@gmail.com">
+         
         </div>
 
         <div class="md-form mb-5">
-          <label for="defaultSelect">Subject</label>
-          <select id="defaultSelect" class="browser-default custom-select mb-4">
-              <option value="" disabled="">Choose option</option>
-              <option value="1" selected="">Feedback</option>
-              <option value="2">Report a bug</option>
-              <option value="3">Feature request</option>
-              <option value="4">Feature request</option>
+          <label for="defaultSelect">Incident:</label>
+          <select name="wand" id="createselect">
           </select>
         </div>
 
         <div class="md-form">
+          <label data-error="wrong" data-success="right" for="form8">What's going on?</label>
           <i class="fas fa-pencil prefix grey-text"></i>
           <textarea type="text" id="form8" class="md-textarea form-control" rows="4"></textarea>
-          <label data-error="wrong" data-success="right" for="form8">Your message</label>
+         
         </div>
 
       </div>
