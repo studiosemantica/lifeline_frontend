@@ -128,11 +128,11 @@ const deleteRat = async (event) => {
 }
 
 //Update a Rat
-const updateRat = async (event) => {
+const updateRequest = async (event) => {
   //Logging the event object
   console.log(event)
   //Create Updated Rat Object
-  const updatedRat = {
+  const updatedRequest = {
     name: $nameEditInput.val(),
     case: $pizzaEditSelect.val()
   }
@@ -142,7 +142,7 @@ const updateRat = async (event) => {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(updatedRat)
+    body: JSON.stringify(updatedRequest)
   })
   
   //update the dom
@@ -164,6 +164,6 @@ getPizza();
 //initially get existing rats
 getRats();
 //add create function to button click
-$button.on('click', createRat)
+$button.on('click', createRequest)
 // add update function to edit submit button
-$editButton.on("click", updateRat)
+$editButton.on("click", updateRequest)
