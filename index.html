@@ -117,54 +117,64 @@
 <button id="editbutton">Submit</button>
 </div>
 
-
+      <!-- MODAL FORM POP DOWN -->
 <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
+        <!-- MODAL HEADER -->
       <div class="modal-header text-center">
         <h4 class="modal-title w-100 font-weight-bold">Request Assistance</h4>
+        <!-- CLOSE BUTTON -->
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+
       </div>
+      
+        <!-- MODAL BODY-->
       <div class="modal-body mx-3">
-        <div class="md-form mb-5">
+
+        <!-- INCIDENT -->
+      <div class="md-form mt-3 mb-3">
+        <label for="defaultSelect">Incident:</label>
+        <select name="wand" id="createselect">
+        </select>
+      </div>
+         <!-- DESCRIPTION -->
+         <div class="md-form mb-3">
+          <label data-error="wrong" data-success="right" for="form8">What's going on?</label>
+          <i class="fas fa-pencil prefix grey-text"></i>
+          <textarea type="text" id="form8" class="md-textarea form-control" rows="4"></textarea>
+         
+        </div>
+
+         <!-- LOCATION -->
+        <div class="md-form mb-3">
+          <label data-error="wrong" data-success="right" for="form31" >Location:</label>
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="text" id="form31" class="form-control validate" placeholder="ex. 34th and 2nd Manhattan">
+        </div>
+      
+        <!-- NAME -->
+        <div class="md-form mb-3">
           <label data-error="wrong" data-success="right" for="form34">Your name:</label>
           <i class="fas fa-user prefix grey-text"></i>
           <input type="text" name=name id="form34" class="form-control validate" placeholder="Name">
           
         </div>
-
-        <div class="md-form mb-5">
+        <!-- EMAIL -->
+        <div class="md-form mb-3">
           <label data-error="wrong" data-success="right" for="form29" >E-Mail:</label>
           <i class="fas fa-envelope prefix grey-text"></i>
           <input type="email" id="form29" class="form-control validate" placeholder="ex. steph19@gmail.com">
         </div>
 
-        <div class="md-form mb-5">
+          <!-- PHONE -->
+        <div class="md-form mb-3">
           <label data-error="wrong" data-success="right" for="form30" >Phone:</label>
           <i class="fas fa-envelope prefix grey-text"></i>
           <input type="text" id="form30" class="form-control validate" placeholder="ex. (917) 833-7544)">
-        </div>
-
-        <div class="md-form mb-5">
-          <label data-error="wrong" data-success="right" for="form31" >Location:</label>
-          <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="text" id="form30" class="form-control validate" placeholder="ex. 34th and 2nd Manhattan">
-        </div>
-
-        <div class="md-form mb-5">
-          <label for="defaultSelect">Incident:</label>
-          <select name="wand" id="createselect">
-          </select>
-        </div>
-
-        <div class="md-form">
-          <label data-error="wrong" data-success="right" for="form8">What's going on?</label>
-          <i class="fas fa-pencil prefix grey-text"></i>
-          <textarea type="text" id="form8" class="md-textarea form-control" rows="4"></textarea>
-         
         </div>
 
       </div>

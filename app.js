@@ -17,6 +17,9 @@ const $nameEditInput = $("#editinput");
 const $caseEditSelect = $("#editselect");
 const $editButton = $("#editbutton");
 const $emailInput = $("#form29")
+const $phoneInput = $("#form30")
+const $locationInput = $("#form31")
+const $descriptionInput =$("form8")
 const $ul = $("ul");
 
 
@@ -137,6 +140,12 @@ const createRequest = async (event) => {
   //update the DOM
   $('.row').empty();
   $nameInput.val('');
+  $nameInput.val(''),
+  $caseSelect.val(''),
+  $phoneInput.val(''),
+  $emailInput.val(''),
+  $locationInput.val(''),
+  $descriptionInput.val(''),
   getRats()
 };
 
