@@ -53,22 +53,6 @@ const getRequests = async () => {
 
   //populate DOM with rats
   data.forEach((request) => {
-    //create the li
-    
-    const $p = $("<p>").addClass("card-text mb-3").text(`${request.name} needs assistance with ${request.case.type}.`).append($('<hr>'));
-
-
-
-    //add a delete button for each rat
-    $p.append($("<button>").text("delete").attr("id", request._id).on("click", deleteRat))
-
-    //add an edit button for each rat
-    $p.append($("<button>").text("edit").on("click", (event) => {
-      $nameEditInput.val(request.name)
-      $caseEditSelect.val(request.case._id)
-      $editButton.attr("id", request._id)
-    }))
-
   
 
   // make bootstrap div for grid column of each card
@@ -96,13 +80,35 @@ const getRequests = async () => {
   
   // define spacer
   const $spacer = $('<hr>')
-  // define cardTitle
+  // define cardLocationTitle
   const $cardLocation = $('<h4>').addClass("card-title").append($('<strong>').text(`${request.location}`).append($('<hr>')))
-  const $cardTitle = $('<h2>').addClass("card-title").append($('<strong>').text(`${request.location}`).append($('<hr>')))
 
+  const $contactDiv = $('<div>').addClass("card text-left mb-4")
+  const $contactHeader = $('<div>').addClass("card-header text-left").attr("style","font-size: 20px;").text("Contact")
+  const $contactBody = $('<div>').addClass("card-body")
+  const $contactName = $('<h5>').addClass("card-title").attr("id", "name").attr("style","font-size: 16px;").text(`${request.name}`)
+  const $contactPhone = $('<p>').addClass("card-text mb-1").attr("style","font-size: 13px;").text(`${request.phone}`)
+  const $contactEmail = $('<p>').addClass("card-text").attr("style","font-size: 13px;").text(`${request.email}`).append($('<hr>'))
+  const $break = $('<br>')
+
+  const $contact = $contactDiv.append($contactHeader).append($contactBody).append($contactName).append($contactPhone).append($contactEmail).append($break)
+      
+     //DESCRIPTION GOES HERE
+      const $p = $("<p>").addClass("card-text mb-3").text(`${request.description}`).append($('<hr>'));
+    
+      //add a delete button for each request
+      const $deleteButton = $("<button>").text("delete").attr("id", request._id).on("click", deleteRat)
+  
+      //add an edit button for each request
+      const $edit = $("<button>").text("edit").on("click", (event) => {
+        $nameEditInput.val(request.name)
+        $caseEditSelect.val(request.case._id)
+        $editButton.attr("id", request._id)
+      })
+  
 
   //create each card 
-  $('.row').append($($gridDiv).append($($cardDiv).append($($cardBodyDiv).append($badge).append($spacer).append($cardLocation).append($p))))
+  $('.row').append($($gridDiv).append($($cardDiv).append($($cardBodyDiv).append($badge).append($spacer).append($cardLocation).append($p).append($contact).append($deleteButton).append($edit))))
 
   // $('.wiz').append($($li2))
   console.log('hellow world');
@@ -146,7 +152,7 @@ const createRequest = async (event) => {
   $emailInput.val(''),
   $locationInput.val(''),
   $descriptionInput.val(''),
-  getRats()
+  getRequests()
 };
 
 //Delete a Rat
