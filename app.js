@@ -16,7 +16,9 @@ const $button = $("#createbutton");
 const $nameEditInput = $("#editinput");
 const $caseEditSelect = $("#editselect");
 const $editButton = $("#editbutton");
+const $emailInput = $("#form29")
 const $ul = $("ul");
+
 
 //////////////////////////////
 //FUNCTIONS
@@ -39,8 +41,8 @@ const $ul = $("ul");
   });
 };
 
-//GET ALL RATS
-const getRats = async () => {
+//GET ALL REQUESTS
+const getRequests = async () => {
   //gets the rats
   const response = await fetch(`${URL}/request`);
   const data = await response.json();
@@ -49,8 +51,11 @@ const getRats = async () => {
   //populate DOM with rats
   data.forEach((request) => {
     //create the li
+    
     const $p = $("<p>").addClass("card-text mb-3").text(`${request.name} needs assistance with ${request.case.type}.`).append($('<hr>'));
-    // const $li2 = $("<p>").addClass("card-text mb-3").text(`${request.name} needs assistance with ${request.case.type}.`).append($('<hr>'));
+
+
+
     //add a delete button for each rat
     $p.append($("<button>").text("delete").attr("id", request._id).on("click", deleteRat))
 
@@ -89,11 +94,12 @@ const getRats = async () => {
   // define spacer
   const $spacer = $('<hr>')
   // define cardTitle
-  const $cardTitle = $('<h4>').addClass("card-title").append($('<strong>').text(`${request.location}`).append($('<hr>')))
+  const $cardLocation = $('<h4>').addClass("card-title").append($('<strong>').text(`${request.location}`).append($('<hr>')))
+  const $cardTitle = $('<h2>').addClass("card-title").append($('<strong>').text(`${request.location}`).append($('<hr>')))
 
 
   //create each card 
-  $('.row').append($($gridDiv).append($($cardDiv).append($($cardBodyDiv).append($badge).append($spacer).append($cardTitle).append($p))))
+  $('.row').append($($gridDiv).append($($cardDiv).append($($cardBodyDiv).append($badge).append($spacer).append($cardLocation).append($p))))
 
   // $('.wiz').append($($li2))
   console.log('hellow world');
@@ -104,10 +110,11 @@ const getRats = async () => {
 
 
 
-
-//CREATE A REQUEST
+//////////////////////
+//CREATE A REQUEST //
+////////////////////
 const createRequest = async (event) => {
-  //Create to New Rat from Form Data
+  //Create to New Request data set from Form Data
   const newRequest = {
     name: $nameInput.val(),
     case: $caseSelect.val(),
@@ -117,7 +124,7 @@ const createRequest = async (event) => {
     description: $descriptionInput.val(),
   };
 
-  //Send request to api to create rat
+  //Send request to api to create request
   const response = await fetch(`${URL}/request`, {
     method: "post",
     headers: {
@@ -142,7 +149,7 @@ const deleteRat = async (event) => {
 
   //update the dom
   $('.row').empty();
-  getRats()
+  getRequests()
 }
 
 //Update a Rat
@@ -167,7 +174,7 @@ const updateRequest = async (event) => {
 
   $nameEditInput.val('');
   $('.row').empty();
-  getRats();
+  getRequests();
 }
 
 
@@ -180,7 +187,7 @@ const updateRequest = async (event) => {
 //Get the pizza for selector
 getPizza();
 //initially get existing rats
-getRats();
+getRequests();
 //add create function to button click
 $button.on('click', createRequest)
 // add update function to edit submit button
