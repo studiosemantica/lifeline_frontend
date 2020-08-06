@@ -121,8 +121,11 @@ const getRequests = async () => {
         $emailInput.val(request.email),
         $locationInput.val(request.location),
         $descriptionInput.val(request.description),
-        // $button.attr("id", request._id)
-        $button.attr("id","editButton").text("Save Changes")
+        // $button.append($editButton).attr("id",request._id).text("Save Changes")
+        $button.attr("id", request._id)
+        // $button.attr("id",request._id)
+        
+
       })
   
 
@@ -196,6 +199,7 @@ const updateRequest = async (event) => {
   const updatedRequest = {
     name: $nameInput.val(),
     case: $caseSelect.val(),
+    case: $caseSelect.val(),
     phone: $phoneInput.val(),
     email: $emailInput.val(),
     location: $locationInput.val(),
@@ -212,7 +216,7 @@ const updateRequest = async (event) => {
   
   //update the dom
 
-  $nameEditInput.val('');
+  // $nameEditInput.val('');
   $('.row').empty();
   getRequests();
 }
