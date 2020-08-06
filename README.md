@@ -5,7 +5,10 @@
 ## Lifeline mutual aid network app - FRONTEND - Project 2 General Assembly
 
 (https://lifeline-responsenetwork.netlify.app)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4f31ef1fd8f9fb880919c2743e703caefd883dca
 
 Magdalena Krzyzanowski
 
