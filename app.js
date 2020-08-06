@@ -16,7 +16,6 @@ const $button = $("#createbutton");
 const $nameEditInput = $("#editinput");
 const $caseEditSelect = $("#editselect");
 const $editButton = $("#editbutton");
-console.log($editButton);
 const $emailInput = $("#form29")
 const $phoneInput = $("#form30")
 const $locationInput = $("#form31")
@@ -29,7 +28,7 @@ const $ul = $("ul");
 /////////////////////////////
 //DEFINE FUNCTIONS HERE
 
-//GET CASE FROM API AND POPULATE SELECTOR INPUT
+//GET CASE/INCIDENT FROM API AND POPULATE SELECTOR INPUT
   const getCase = async () => {
   //API CALL USING ASYNC/AWAIT
   const response = await fetch(`${URL}/case`);
@@ -40,31 +39,35 @@ const $ul = $("ul");
     const $option = $("<option>").attr("value", item._id).text(item.type);
     $caseSelect.append($option);
 
-    const $option2 = $("<option>").attr("value", item._id).text(item.type);
-    $caseEditSelect.append($option2);
   });
 };
 
-//GET ALL REQUESTS
-const getRequests = async () => {
+   /////////////////////////
+  //// GET ALL REQUESTS ///
+ /////////////////////////
+
+   //////////////////////////////////////////////////////////////////////////////////////////////////
+  ///  READ MORE, EDIT AND DELETE BUTTONS + FUNCTION INCLUDED + COLOR CODED INCIDENT BADGE LOGIC ///
+
+  const getRequests = async () => {
   //gets the Requests
   const response = await fetch(`${URL}/request`);
   const data = await response.json();
-  console.log(data);
+  
 
   //populate DOM with Requests
   data.forEach((request) => {
   
 
   // make bootstrap div for grid column of each card
-  const $gridDiv = $('<div>').addClass("col-md-4 mb-4")
+  const $gridDiv = $('<div>').addClass("col-md-6 mb-4")
   // add card div
   const $cardDiv = $('<div>').addClass("card")
   // add card content div
   const $cardBodyDiv = $('<div>').addClass("card-body")
 
 
-  //CODE Block to assign color tag to each Badge
+  //CODE Block to assign color tag to each Badge indicating Incident Type
   let $badge = $('')
   if ( request.case.type === "Accident") {
     $badge = $('<a>').addClass("badge badge-secondary").text(`${request.case.type}`)
@@ -78,24 +81,24 @@ const getRequests = async () => {
     $badge = $('<a>').addClass("badge badge-primary").text(`${request.case.type}`)
   }
 
-  /////////////////////
-  ///  CONTACT DIV ///
-  ///////////////////
+      /////////////////////
+      ///  CONTACT DIV ///
+      ///////////////////
 
-
-  // define spacer
-  const $spacer = $('<hr>')
-  // define cardLocationTitle
-  const $cardLocation = $('<h4>').addClass("card-title").append($('<strong>').text(`${request.location}`).append($('<hr>')))
-  const $collapseDivButton = $('<button>').addClass("btn btn-info").attr("data-toggle","collapse").attr("data-target",`#collapse${request._id}`).text('Read More')
-  const $collapseDiv = $('<div>').addClass("collapse").attr("id", `collapse${request._id}`)
-  const $contactDiv = $('<div>').addClass("card text-left mb-4")
-  const $contactHeader = $('<div>').addClass("card-header").attr("style","font-size: 20px;").text("Contact")
-  const $contactBody = $('<div>').addClass("card-body")
-  const $contactName = $('<h5>').addClass("card-title").attr("id", "name").attr("style","font-size: 16px;").text(`${request.name}`)
-  const $contactPhone = $('<p>').addClass("card-text").addClass("mb-1").attr("style","font-size: 13px;").text(`${request.phone}`)
-  const $contactEmail = $('<p>').addClass("card-text").attr("style","font-size: 13px;").text(`${request.email}`)
-  const $break = $('<br>')
+      //////////////////////////////////////////////////////
+      /////  VARIABLES TO BUILD OUT USER INFORMATION  /////
+      ////////////////////////////////////////////////////
+      const $spacer = $('<hr>')
+      const $cardLocation = $('<h5>').addClass("card-title").attr("id","cardTitle").append($('<strong>').text(`${request.location}`).append($('<hr>')))
+      const $collapseDivButton = $('<button>').addClass("btn btn-info").attr("data-toggle","collapse").attr("data-target",`#collapse${request._id}`).text('Read More')
+      const $collapseDiv = $('<div>').addClass("collapse").attr("id", `collapse${request._id}`)
+      const $contactDiv = $('<div>').addClass("card text-left mb-4")
+      const $contactHeader = $('<div>').addClass("card-header").attr("style","font-size: 20px;").text("Contact")
+      const $contactBody = $('<div>').addClass("card-body")
+      const $contactName = $('<h5>').addClass("card-title").attr("id", "name").attr("style","font-size: 16px;").text(`${request.name}`)
+      const $contactPhone = $('<p>').addClass("card-text").addClass("mb-1").attr("style","font-size: 13px;").text(`${request.phone}   `)
+      const $contactEmail = $('<p>').addClass("card-text").attr("style","font-size: 13px;").text(`${request.email}`)
+      const $break = $('<br>')
       
       //DESCRIPTION GOES HERE
       const $p = $("<p>").addClass("card-text mb-3").text(`${request.description}`).append($('<hr>'));
@@ -115,6 +118,7 @@ const getRequests = async () => {
         $emailInput.val(request.email),
         $locationInput.val(request.location),
         $descriptionInput.val(request.description),
+        $button.text("Save Changes")
         $button.attr("id",request._id)
         $button.off()
         $button.on("click", updateRequest)
@@ -125,29 +129,30 @@ const getRequests = async () => {
       
       
 
+      ///////////////////////////////
+      /// BUILD OUT CARD CONTENT ///
+      //////////////////////////////
+
+  
+      //// GROUPED CONTENT VARIABLES 
       const $contactDetails = $contactBody.append($contactName).append($contactPhone).append($contactEmail)
-
       const $contact = $contactDiv.append($contactHeader).append($contactDetails)
-
-      const $collapsedContent = $collapseDiv.append($p).append($contact).append($deleteButton).append($edit)
+      const $collapsedContent = $collapseDiv.append($('<br>')).append($p).append($contact).append($deleteButton).append($edit)
     
       
 
-  //create each card 
-  $('.row').append($($gridDiv).append($($cardDiv).append($($cardBodyDiv).append($badge).append($spacer).append($cardLocation).append($collapseDivButton).append($collapsedContent))))
+      //// CREATE EACH CARD 
+      $('.row').append($($gridDiv).append($($cardDiv).append($($cardBodyDiv).append($badge).append($spacer).append($cardLocation).append($("<br>")).append($collapseDivButton).append($("<br>")).append($collapsedContent))))
 
-  // $('.wiz').append($($li2))
-  console.log('hellow world');
-  console.log(request.case.type);
 
   });
 };
 
 
+   //////////////////////////
+  //// CREATE A REQUEST ////
+ //////////////////////////
 
-//////////////////////
-//CREATE A REQUEST //
-////////////////////
 const createRequest = async (event) => {
   //Create to New Request data set from Form Data
   const newRequest = {
@@ -160,6 +165,7 @@ const createRequest = async (event) => {
     
   };
    console.log(newRequest);
+
   //Send request to api to create request
   const response = await fetch(`${URL}/request`, {
     method: "post",
@@ -186,8 +192,12 @@ const createRequest = async (event) => {
 
 };
 
-//Delete a Request
-const deleteRequests = async (event) => {
+
+  ///////////////////////////
+ ///// DELETE A REQUEST ////
+///////////////////////////
+
+  const deleteRequests = async (event) => {
   //make request to delete request
   const response = await fetch(`${URL}/request/${event.target.id}`, {
     method: "delete"
@@ -198,7 +208,11 @@ const deleteRequests = async (event) => {
   getRequests()
 }
 
-//Update a Rat
+
+  ///////////////////////////
+ ///// UPDATE A REQUEST ////
+///////////////////////////
+
 const updateRequest = async (event) => {
   //Logging the event object
   console.log(event)
@@ -228,6 +242,11 @@ const updateRequest = async (event) => {
   getRequests();
 }
 
+
+  //////////////////////////
+ /////   RESET FORM   /////
+//////////////////////////
+
 const resetForm = () => {
   $nameInput.val('')
   $caseSelect.val('')
@@ -243,8 +262,8 @@ const resetForm = () => {
 
 
 ////////////////////////////////
-// Main Application Logic
-////////////////////////////////
+// Main Application Logic   ///
+//////////////////////////////
 // Start executing below
 
 //Get the case for selector
