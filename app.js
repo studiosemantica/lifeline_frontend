@@ -29,8 +29,8 @@ const $ul = $("ul");
 /////////////////////////////
 //DEFINE FUNCTIONS HERE
 
-//GET PIZZA FROM API AND POPULATE SELECTOR INPUT
-  const getPizza = async () => {
+//GET CASE FROM API AND POPULATE SELECTOR INPUT
+  const getCase = async () => {
   //API CALL USING ASYNC/AWAIT
   const response = await fetch(`${URL}/case`);
   const data = await response.json();
@@ -171,6 +171,7 @@ const createRequest = async (event) => {
 
 
   //update the DOM
+  
   $('.row').empty();
   $nameInput.val('');
   $nameInput.val(''),
@@ -180,6 +181,8 @@ const createRequest = async (event) => {
   $locationInput.val(''),
   $descriptionInput.val(''),
   getRequests()
+  document.getElementById('close').click()
+
 };
 
 //Delete a Rat
@@ -223,20 +226,20 @@ const updateRequest = async (event) => {
   $('.row').empty();
   resetForm();
   getRequests();
-  // $button.off()
-  // $button.on("click", createRequest)
+
 }
 
 const resetForm = () => {
-   $nameInput.val('')
-   $caseSelect.val('')
+  $nameInput.val('')
   $caseSelect.val('')
-   $phoneInput.val('')
-   $emailInput.val('')
-   $locationInput.val('')
+  $caseSelect.val('')
+  $phoneInput.val('')
+  $emailInput.val('')
+  $locationInput.val('')
   $descriptionInput.val('')
   $button.off()
   $button.on("click", createRequest)
+  document.getElementById('close').click()
 }
 
 
@@ -245,8 +248,8 @@ const resetForm = () => {
 ////////////////////////////////
 // Start executing below
 
-//Get the pizza for selector
-getPizza();
+//Get the case for selector
+getCase();
 //initially get existing rats
 getRequests();
 //add create function to button click
