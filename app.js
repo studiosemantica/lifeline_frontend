@@ -93,7 +93,7 @@ const getRequests = async () => {
 
 
   const $contactDetails = $contactBody.append($contactName).append($contactPhone).append($contactEmail)
-  
+
   const $contact = $contactDiv.append($contactHeader).append($contactDetails)
       
      //DESCRIPTION GOES HERE
@@ -103,10 +103,26 @@ const getRequests = async () => {
       const $deleteButton = $("<button>").text("delete").attr("id", request._id).on("click", deleteRat)
   
       //add an edit button for each request
-      const $edit = $("<button>").text("edit").on("click", (event) => {
-        $nameEditInput.val(request.name)
-        $caseEditSelect.val(request.case._id)
-        $editButton.attr("id", request._id)
+//       <div class="text-center">
+//   <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalContactForm" style="background-color:black;color:white;">Request Assistance</a>
+// </div>
+
+      const $edit = $("<button>")
+      // .$("<a>").attr('href', "").addClass("btn btn-default btn-rounded mb-4").attr('data-toggle',"modal").attr("data-target", "#modalContactForm")
+      .text("edit").on("click", (event) => {
+        
+        $edit.attr('href', "")
+        // .addClass("btn btn-default btn-rounded mb-4")
+        .attr('data-toggle',"modal").attr("data-target", "#modalContactForm")
+        
+        $nameInput.val(request.name)
+        $caseSelect.val(request.case._id)
+        $phoneInput.val(request.phone),
+        $emailInput.val(request.email),
+        $locationInput.val(request.location),
+        $descriptionInput.val(request.description),
+        // $button.attr("id", request._id)
+        $button.attr("id","editButton").text("Save Changes")
       })
   
 
@@ -178,8 +194,12 @@ const updateRequest = async (event) => {
   console.log(event)
   //Create Updated Rat Object
   const updatedRequest = {
-    name: $nameEditInput.val(),
-    case: $caseEditSelect.val()
+    name: $nameInput.val(),
+    case: $caseSelect.val(),
+    phone: $phoneInput.val(),
+    email: $emailInput.val(),
+    location: $locationInput.val(),
+    description: $descriptionInput.val(),
   }
   //make our put request
   const response = await fetch(`${URL}/request/${event.target.id}`, {
