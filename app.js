@@ -62,7 +62,7 @@ const $ul = $("ul");
   // make bootstrap div for grid column of each card
   const $gridDiv = $('<div>').addClass("col-md-6 mb-4")
   // add card div
-  const $cardDiv = $('<div>').addClass("card")
+  const $cardDiv = $('<div>').addClass("card border-secondary bg-light")
   // add card content div
   const $cardBodyDiv = $('<div>').addClass("card-body")
 
@@ -90,7 +90,7 @@ const $ul = $("ul");
       ////////////////////////////////////////////////////
       const $spacer = $('<hr>')
       const $cardLocation = $('<h5>').addClass("card-title").attr("id","cardTitle").append($('<strong>').text(`${request.location}`).append($('<hr>')))
-      const $collapseDivButton = $('<button>').addClass("btn btn-info").attr("data-toggle","collapse").attr("data-target",`#collapse${request._id}`).text('Read More')
+      const $collapseDivButton = $('<button>').addClass("btn btn-secondary btn-sm").attr("data-toggle","collapse").attr("data-target",`#collapse${request._id}`).text('Show Details')
       const $collapseDiv = $('<div>').addClass("collapse").attr("id", `collapse${request._id}`)
       const $contactDiv = $('<div>').addClass("card text-left mb-4")
       const $contactHeader = $('<div>').addClass("card-header").attr("style","font-size: 20px;").text("Contact")
@@ -108,7 +108,7 @@ const $ul = $("ul");
       ///////////////////////////
   
       //add an EDIT button for each request
-      const $edit = $("<button>").text("edit").on("click", (event) => {
+      const $edit = $("<button>").addClass("btn btn-dark btn-sm ml-4").text("Edit Post").on("click", (event) => {
         
         $edit.attr('href', "").attr('data-toggle',"modal").attr("data-target", "#modalContactForm")
         
@@ -125,7 +125,7 @@ const $ul = $("ul");
       })
 
       // /add a DELETE button for each request
-      const $deleteButton = $("<button>").text("delete").attr("id", request._id).on("click", deleteRequests)
+      const $deleteButton = $("<button>").addClass("btn btn-dark btn-sm ml-0").text("Delete Post").attr("id", request._id).on("click", deleteRequests)
       
       
 
@@ -142,7 +142,7 @@ const $ul = $("ul");
       
 
       //// CREATE EACH CARD 
-      $('.row').append($($gridDiv).append($($cardDiv).append($($cardBodyDiv).append($badge).append($spacer).append($cardLocation).append($("<br>")).append($collapseDivButton).append($("<br>")).append($collapsedContent))))
+      $('.row').append($($gridDiv).append($($cardDiv).append($($cardBodyDiv).append($badge).append($spacer).append($cardLocation).append($("<br>")).append($("<br>")).append($collapseDivButton).append($("<br>")).append($collapsedContent))))
 
 
   });
