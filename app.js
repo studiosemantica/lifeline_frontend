@@ -47,12 +47,12 @@ const $ul = $("ul");
 
 //GET ALL REQUESTS
 const getRequests = async () => {
-  //gets the rats
+  //gets the Requests
   const response = await fetch(`${URL}/request`);
   const data = await response.json();
   console.log(data);
 
-  //populate DOM with rats
+  //populate DOM with Requests
   data.forEach((request) => {
   
 
@@ -78,43 +78,36 @@ const getRequests = async () => {
     $badge = $('<a>').addClass("badge badge-primary").text(`${request.case.type}`)
   }
 
-  
+  /////////////////////
+  ///  CONTACT DIV ///
+  ///////////////////
+
+
   // define spacer
   const $spacer = $('<hr>')
   // define cardLocationTitle
   const $cardLocation = $('<h4>').addClass("card-title").append($('<strong>').text(`${request.location}`).append($('<hr>')))
-
-  const $contactDiv = $('<div>').attr('class','card text-left mb-4')
+  const $collapseDivButton = $('<button>').addClass("btn btn-info").attr("data-toggle","collapse").attr("data-target",`#collapse${request._id}`).text('Read More')
+  const $collapseDiv = $('<div>').addClass("collapse").attr("id", `collapse${request._id}`)
+  const $contactDiv = $('<div>').addClass("card text-left mb-4")
   const $contactHeader = $('<div>').addClass("card-header").attr("style","font-size: 20px;").text("Contact")
   const $contactBody = $('<div>').addClass("card-body")
   const $contactName = $('<h5>').addClass("card-title").attr("id", "name").attr("style","font-size: 16px;").text(`${request.name}`)
   const $contactPhone = $('<p>').addClass("card-text").addClass("mb-1").attr("style","font-size: 13px;").text(`${request.phone}`)
   const $contactEmail = $('<p>').addClass("card-text").attr("style","font-size: 13px;").text(`${request.email}`)
   const $break = $('<br>')
-
-
-  const $contactDetails = $contactBody.append($contactName).append($contactPhone).append($contactEmail)
-
-  const $contact = $contactDiv.append($contactHeader).append($contactDetails)
       
-     //DESCRIPTION GOES HERE
+      //DESCRIPTION GOES HERE
       const $p = $("<p>").addClass("card-text mb-3").text(`${request.description}`).append($('<hr>'));
-    
-      //add a delete button for each request
-      const $deleteButton = $("<button>").text("delete").attr("id", request._id).on("click", deleteRat)
-  
-      //add an edit button for each request
-//       <div class="text-center">
-//   <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalContactForm" style="background-color:black;color:white;">Request Assistance</a>
-// </div>
 
-      const $edit = $("<button>")
-      // .$("<a>").attr('href', "").addClass("btn btn-default btn-rounded mb-4").attr('data-toggle',"modal").attr("data-target", "#modalContactForm")
-      .text("edit").on("click", (event) => {
+      /////////////////////////////
+      /// EDIT/DELETE BUTTONS  ///
+      ///////////////////////////
+  
+      //add an EDIT button for each request
+      const $edit = $("<button>").text("edit").on("click", (event) => {
         
-        $edit.attr('href', "")
-        // .addClass("btn btn-default btn-rounded mb-4")
-        .attr('data-toggle',"modal").attr("data-target", "#modalContactForm")
+        $edit.attr('href', "").attr('data-toggle',"modal").attr("data-target", "#modalContactForm")
         
         $nameInput.val(request.name)
         $caseSelect.val(request.case._id)
@@ -125,15 +118,23 @@ const getRequests = async () => {
         $button.attr("id",request._id)
         $button.off()
         $button.on("click", updateRequest)
-        // $button.attr("id", request._id)
-        // $button.attr("id",request._id)
-        
-
       })
-  
+
+      // /add a DELETE button for each request
+      const $deleteButton = $("<button>").text("delete").attr("id", request._id).on("click", deleteRequests)
+      
+      
+
+      const $contactDetails = $contactBody.append($contactName).append($contactPhone).append($contactEmail)
+
+      const $contact = $contactDiv.append($contactHeader).append($contactDetails)
+
+      const $collapsedContent = $collapseDiv.append($p).append($contact).append($deleteButton).append($edit)
+    
+      
 
   //create each card 
-  $('.row').append($($gridDiv).append($($cardDiv).append($($cardBodyDiv).append($badge).append($spacer).append($cardLocation).append($p).append($contact).append($deleteButton).append($edit))))
+  $('.row').append($($gridDiv).append($($cardDiv).append($($cardBodyDiv).append($badge).append($spacer).append($cardLocation).append($collapseDivButton).append($collapsedContent))))
 
   // $('.wiz').append($($li2))
   console.log('hellow world');
@@ -185,9 +186,9 @@ const createRequest = async (event) => {
 
 };
 
-//Delete a Rat
-const deleteRat = async (event) => {
-  //make request to delete rat
+//Delete a Request
+const deleteRequests = async (event) => {
+  //make request to delete request
   const response = await fetch(`${URL}/request/${event.target.id}`, {
     method: "delete"
   })
@@ -211,6 +212,7 @@ const updateRequest = async (event) => {
     location: $locationInput.val(),
     description: $descriptionInput.val(),
   }
+
   //make our put request
   const response = await fetch(`${URL}/request/${event.target.id}`, {
     method: "put",
@@ -219,14 +221,11 @@ const updateRequest = async (event) => {
     },
     body: JSON.stringify(updatedRequest)
   })
-  
-  //update the dom
 
-  // $nameEditInput.val('');
+  //update the dom
   $('.row').empty();
   resetForm();
   getRequests();
-
 }
 
 const resetForm = () => {
