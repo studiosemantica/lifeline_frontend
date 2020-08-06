@@ -92,20 +92,20 @@ In the post-MVP application, users would be able to register profiles as unverif
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
 | Writing HTML and Basic CSS structure | H | 3hr | 3hr | 1 hr|
-| Drop Down Menu with Links | M | 1hr | 1.5hr | 0 hr|
+| Drop Down Menu with Links | M | 1hr | 1.5hr | .25 hr|
 | Site Title Section and Tagline | M | 1 hr | 1.5 hr | .25 hr|
-| Desktop Menu | M | 1 hr | 1 hr | 0 hr|
+| Desktop Menu | M | 1 hr | 1 hr | .25 hr|
 | Hero Text Intro Section / Site Description | L | 45 min | 1 hr | 0 hr|
 | Request Assistance Button | H | 1 hr | 1.5hr | .25 hr|
 | Drop Down User Post Form | H | 3hr | 3hr | 3 hr|
 | Alert Cards Section | M | 1hr | 1.5hr |.50 hr|
-| Individual Alert Cards with Update and Delete Functionality | H | 3hr| 3.5hr | 1.5 hr|
-| Hamburger | L | 1 hr  | 1.5 hr | 0 hr|
+| Individual Alert Cards with Update and Delete Functionality | H | 3hr| 3.5hr | 3 hr|
+| Hamburger | L | 1 hr  | 1.5 hr | .25 hr|
 | Responsive | M | 3 hr | 3.5hr | .25 hr|
-| Deployment(Domain Mapping, Netlify, Heroku, Troubleshooting, testing) | H | 5hr | 6.5hr | 2 hr|
+| Deployment(Domain Mapping, Netlify, Heroku, Troubleshooting, testing) | H | 5hr | 6.5hr | 4.5 hr|
 | Research (Planning, Referencing libraries, codes, and writing pseudocode) | H | 8hr | 9hr | 6hr|
 | Backend Connection & jQuery | H | 6hr | 7 hr | 3 hr|
-| Total | H | 39.5 hrs| 3 hrs | 17.75 hr|
+| Total | H | 39.5 hrs| 3 hrs | 22.50 hr|
 
 #### PostMVP
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
