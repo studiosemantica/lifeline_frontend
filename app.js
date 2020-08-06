@@ -16,6 +16,7 @@ const $button = $("#createbutton");
 const $nameEditInput = $("#editinput");
 const $caseEditSelect = $("#editselect");
 const $editButton = $("#editbutton");
+console.log($editButton);
 const $emailInput = $("#form29")
 const $phoneInput = $("#form30")
 const $locationInput = $("#form31")
@@ -121,8 +122,10 @@ const getRequests = async () => {
         $emailInput.val(request.email),
         $locationInput.val(request.location),
         $descriptionInput.val(request.description),
-        // $button.append($editButton).attr("id",request._id).text("Save Changes")
-        $button.attr("id", request._id)
+        $button.attr("id",request._id)
+        $button.off()
+        $button.on("click", updateRequest)
+        // $button.attr("id", request._id)
         // $button.attr("id",request._id)
         
 
@@ -218,9 +221,23 @@ const updateRequest = async (event) => {
 
   // $nameEditInput.val('');
   $('.row').empty();
+  resetForm();
   getRequests();
+  // $button.off()
+  // $button.on("click", createRequest)
 }
 
+const resetForm = () => {
+   $nameInput.val('')
+   $caseSelect.val('')
+  $caseSelect.val('')
+   $phoneInput.val('')
+   $emailInput.val('')
+   $locationInput.val('')
+  $descriptionInput.val('')
+  $button.off()
+  $button.on("click", createRequest)
+}
 
 
 ////////////////////////////////
