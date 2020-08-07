@@ -50,6 +50,11 @@ Visitors to the site may also access a menu that will provide links to external 
 
 In the post-MVP application, users would be able to register profiles as unverified or verified volunteers and have access to a forum. Also could implement functionality that marks request as pending or indicates that someone is on the way and tending to the situation and other volunteers could contact others who are assisting the request and join.
 
+## Related Apps
+
+https://www.pulsepoint.org/ (Volunteer-based response network)
+https://www.mutualaidhub.org/ (Location-oriented database of mutual aid groups)
+
 
 ## Wireframes
 
@@ -118,12 +123,101 @@ In the post-MVP application, users would be able to register profiles as unverif
 | Total | H | 70 hrs| 76 hrs | .75 hr |
 
 ## Additional Libraries
-The following resources/Libraries were referenced in order to create the listed elements.
+
+Various Front-End Elements created with 
+
+jQuery
+(https://jquery.com/)
+
+BOOTSTRAP CDN
+(https://getbootstrap.com/)
+
+Responsive Bootstrap Cards
+(https://mdbootstrap.com/snippets/jquery/marta-szymanska/1349788)
+
+Collapsible Card Content
+(https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_collapsible&stacked=h)
 
 
 ## Code Snippet
 
+The following code snippet is a if/else statement block that assigns a different color to a badge that is assigned to and describes each incident and invidual request in order to provide color classification and easier identification when using the app.
+
+```
+  //CODE Block to assign color tag to each Badge indicating Incident Type
+  let $badge = $('')
+  if ( request.case.type === "Accident") {
+    $badge = $('<a>').addClass("badge badge-secondary").text(`${request.case.type}`)
+  } else if ( request.case.type === "Mental Health Crisis"){
+    $badge = $('<a>').addClass("badge badge-warning").text(`${request.case.type}`)
+  } else if ( request.case.type === "Potential Overdose"){
+    $badge = $('<a>').addClass("badge badge-danger").text(`${request.case.type}`)
+  } else if ( request.case.type === "Seeking Safety"){
+    $badge = $('<a>').addClass("badge badge-success").text(`${request.case.type}`)
+  } else if ( request.case.type === "Seeking Resources"){
+    $badge = $('<a>').addClass("badge badge-primary").text(`${request.case.type}`)
+  }
+
+```  
+
+
 
 ## Issues and Resolutions
 
- This section will list of all major issues encountered and their resolution.
+I had a few minor issues when working with jQuery and front-end development.
+
+The first issue that had occurred was when I was attempting to use the same modal form to act as both the mechanism to create requests and to edit them as well. 
+
+
+```
+      //add an EDIT button for each request
+      const $edit = $("<button>").addClass("btn btn-dark btn-sm ml-4").text("Edit Post").on("click", (event) => {
+        
+        $edit.attr('href', "").attr('data-toggle',"modal").attr("data-target", "#modalContactForm")
+        
+        $nameInput.val(request.name)
+        $caseSelect.val(request.case._id)
+        $phoneInput.val(request.phone),
+        $emailInput.val(request.email),
+        $locationInput.val(request.location),
+        $descriptionInput.val(request.description),
+        $button.text("Save Changes")
+        $button.attr("id",request._id)
+        $button.off()
+        $button.on("click", updateRequest)
+      })
+```
+
+In order to use the same form, I created a function to target the drop-down modal form and reassign the functionality of the buttons:
+
+```
+  const $edit = $("<button>").addClass("btn btn-dark btn-sm ml-4").text("Edit Post").on("click", (event) => {
+        
+        $edit.attr('href', "").attr('data-toggle',"modal").attr("data-target", "#modalContactForm") 
+
+
+        ....
+
+```
+ I was encountering an issue where the existing buttons on the modal forms was triggering the createRequest function in my code, when I wanted it to trigger the updateRequest function instead. In addition to triggering the modal form by reassigning attributes, I had to additionally change the use the existing button and its functionality with a few helper functions to help redirect it to be targeting the updateRequest function as desired:
+
+ ```
+        . 
+        .
+        .
+        .
+        $button.text("Save Changes")
+        $button.attr("id",request._id)
+        $button.off()
+        $button.on("click", updateRequest)
+      })
+
+```
+
+Another issue that came up was when I was applying bootstrap collapse functinality to my alert cards. I wanted the UI to be such that the alert cards would appear in the same uniform width and height on the page with room accounted for longer addresses provided in the location title by users. I wanted the descriptive requests and contact information to not be immediately visible to the user so people could choose which alert cards to show more information about. The badges at the top of the cards give the user an idea of what the incident is and this serves as both a way to provide a content-warning and to not display cards in various sizes all at once, disrupting a uniformity in design. When I implemented the bootstrap, the collapse function was targeting each cards at the same time because it was targeting a shared ID of the targeted element. My professor Alex Merced advised to use a method called 'interpolation' that would assign unique classes to each card I was targeting. What this does is attach the first half of the ID and appends a string interpolation of each request's ID so that each collapse target would function individually.
+
+```
+   const $collapseDivButton = $('<button>').addClass("btn btn-secondary btn-sm").attr("data-toggle","collapse").attr("data-target",`#collapse${request._id}`).text('Show Details')
+      const $collapseDiv = $('<div>').addClass("collapse").attr("id", `collapse${request._id}`)
+
+```
