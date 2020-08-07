@@ -255,6 +255,7 @@ const resetForm = () => {
   $emailInput.val('')
   $locationInput.val('')
   $descriptionInput.val('')
+  $button.text("Submit Request")
   $button.off()
   $button.on("click", createRequest)
   document.getElementById('close').click()
