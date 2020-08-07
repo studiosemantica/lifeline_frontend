@@ -141,7 +141,7 @@ Collapsible Card Content
 
 ## Code Snippet
 
-The following code snippet is a if/else statement block that assigns a different color to a badge that is assigned to and describes each incident and invidual request in order to provide color classification and easier identification when using the app.
+The following code snippet is a if/else statement block that assigns a different color to a badge that is assigned to and describes each incident and invidual request in order to provide color classification and easier identification when using the app. Special thanks to Professor Suresh Sigera for assistance with this code block.
 
 ```
   //CODE Block to assign color tag to each Badge indicating Incident Type
